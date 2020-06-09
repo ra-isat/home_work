@@ -7,36 +7,55 @@ console.log(addExpenses.toLowerCase().split(", "));
 let mission = 50000;
 let deposit = confirm("Есть ли у вас депозит в банке?");
 
+// Выведение типов данных в консоль
+
+function showTypeOf(a) {
+    return typeof a;
+}
+console.log(showTypeOf(money));
+console.log(showTypeOf(income));
+console.log(showTypeOf(deposit));
+
+// Считаем расходы
+
 let expenses1 = prompt("Введите обязательную статью расходов");
 let amount1 = +prompt("Во сколько это обойдется?", 10000);
 let expenses2 = prompt("Введите обязательную статью расходов");
 let amount2 = +prompt("Во сколько это обойдется?", 10000);
 
-let budgetMonth  = money - (amount1 + amount2);
-console.log('budgetMonth: ', budgetMonth);
+let getExpensesMonth = function(a, b) {
+    return a + b;
+};
+console.log("Сумма обязательных расходов: " + getExpensesMonth(amount1, amount2));
 
-let budgetDay = Math.floor(budgetMonth / 30);
+// Накопления за месяц
+
+function getAccumulatedMonth(a, b, c) {
+    return a - (b + c);
+}
+let accumulatedMonth = getAccumulatedMonth(money, amount1, amount2);
+console.log("Бюджет на месяц: " + accumulatedMonth);
+
+// Цель
+
+function getTargetMonth(a, b) {
+ return Math.ceil(a / b);
+}
+let targetMonth = getTargetMonth(mission, accumulatedMonth);
+console.log("Цель будет достигнута за: " + targetMonth + " месяцев.");
+
+let budgetDay = Math.ceil(accumulatedMonth / 30);
 console.log('budgetDay: ', budgetDay);
 
-if (budgetDay >= 1200) {
-    console.log("У вас высокий уровень дохода");
+let getStatusIncome = function() {
+   if (budgetDay >= 1200) {
+    return ("У вас высокий уровень дохода");
 } else if (1200 > budgetDay >= 600) {
-    console.log("У вас средний уровень дохода");
+    return ("У вас средний уровень дохода");
 } else if (0 <= budgetDay < 600) {
-    console.log("К сожалению у вас уровень дохода ниже среднего");
+    return ("К сожалению у вас уровень дохода ниже среднего");
 } else if (budgetDay < 0) {
-    console.log("Что то пошло не так");
-}
-
-console.log("Цель будет достигнута за: " + Math.ceil(mission / budgetMonth) + " месяцев.");
-let period = 6;
-
-
-console.log(typeof money);
-console.log(typeof income);
-console.log(typeof addExpenses);
-
-console.log("Период равен " + period + " месяцев.");
-console.log("Цель заработка " + mission + " руб.");
-
-console.log(addExpenses.length);
+    return ("Что то пошло не так");
+} 
+};
+console.log(getStatusIncome());
