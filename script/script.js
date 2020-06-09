@@ -1,6 +1,6 @@
 'use strict';
 
-let money = +prompt("Ваш месячный доход?");
+let money = +prompt("Ваш месячный доход?", 50000);
 let income = "карманные расходы";
 let addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую");
 console.log(addExpenses.toLowerCase().split(", "));
@@ -8,9 +8,9 @@ let mission = 50000;
 let deposit = confirm("Есть ли у вас депозит в банке?");
 
 let expenses1 = prompt("Введите обязательную статью расходов");
-let amount1 = +prompt("Во сколько это обойдется?");
+let amount1 = +prompt("Во сколько это обойдется?", 10000);
 let expenses2 = prompt("Введите обязательную статью расходов");
-let amount2 = +prompt("Во сколько это обойдется?");
+let amount2 = +prompt("Во сколько это обойдется?", 10000);
 
 let budgetMonth  = money - (amount1 + amount2);
 console.log('budgetMonth: ', budgetMonth);
