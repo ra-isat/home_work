@@ -18,22 +18,41 @@ console.log(showTypeOf(deposit));
 
 // Считаем расходы
 
-let expenses1 = prompt("Введите обязательную статью расходов");
-let amount1 = +prompt("Во сколько это обойдется?", 10000);
-let expenses2 = prompt("Введите обязательную статью расходов");
-let amount2 = +prompt("Во сколько это обойдется?", 10000);
+let posibleExpensesNameArray = addExpenses.split(", ");
 
-let getExpensesMonth = function(a, b) {
-    return a + b;
-};
-console.log("Сумма обязательных расходов: " + getExpensesMonth(amount1, amount2));
+let posibleExpensesCostArray = posibleExpensesNameArray.map(expensesName =>
+    {
+        let cost = +prompt(`Во сколько обходится "${expensesName}"?`, 10000);
+        let percentProbability = +prompt(`С какой % вероятностью придется заняться "${expensesName}"?`, 33);
+        if (percentProbability < 0 || percentProbability > 100){
+            alert(`Забудем об "${expensesName}"...`);
+            return 0;
+        }
+        return cost * percentProbability / 100;
+    }
+);
+
+let accumulatePosibleCost = posibleExpensesCostArray.reduce((accumulate, cost) => accumulate + cost);
+console.log("Средняя сумма возможных расходов: " + accumulatePosibleCost);
+
+let necessaryExpensesCostArray = new Array(2);
+
+for (let i = 0; i < necessaryExpensesCostArray.length; i++) {
+    prompt("Введите обязательную статью расходов"); // why??
+    necessaryExpensesCostArray[i] = +prompt("Во сколько это обойдется?", 10000);
+}
+
+let accumulateNecessaryCost = necessaryExpensesCostArray.reduce((accumulate, cost) => accumulate + cost);
+console.log("Сумма обязательных расходов: " + accumulateNecessaryCost);
 
 // Накопления за месяц
 
 function getAccumulatedMonth(a, b, c) {
     return a - (b + c);
 }
-let accumulatedMonth = getAccumulatedMonth(money, amount1, amount2);
+
+let accumulatedMonth = getAccumulatedMonth(
+    money, accumulateNecessaryCost, accumulatePosibleCost);
 console.log("Бюджет на месяц: " + accumulatedMonth);
 
 // Цель
