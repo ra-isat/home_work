@@ -90,7 +90,3 @@ let getStatusIncome = function() {
 } 
 };
 console.log(getStatusIncome());
-
-
-
-
