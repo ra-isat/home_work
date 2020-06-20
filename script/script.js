@@ -4,6 +4,10 @@ let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
+let isString = function(n) {
+    return isNaN(parseFloat(n)) && n !== null && (n.trim() !== "");    
+};
+
 let money,
     start = function() {
         do {
@@ -34,7 +38,7 @@ let appData = {
             let itemIncome;
             do {
                 itemIncome = prompt("Какой у вас доп зарабаток?", 'фриланс');
-            } while(isNumber(itemIncome));
+            } while(!isString(itemIncome));
             
             let cashIncome;
             do {
@@ -53,7 +57,7 @@ let appData = {
     
             do {
                 expenses = prompt("Введите обязательную статью расходов", 'кофе');
-            } while(isNumber(expenses));          
+            } while(!isString(expenses));          
     
             do {
                 expensesMonth = prompt("Во сколько это обойдется?", 10000);
