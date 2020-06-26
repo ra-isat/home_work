@@ -15,6 +15,8 @@ link[4].textContent = "Книга 3. this и Протопипы Объектов
 // книга вторая
 list[8].after(list[4]);
 list[4].after(list[5]);
+list[9].after(list[2]);
+list[9].before(list[7]);
 
 // книга пятая
 list[47].after(list[55]);
