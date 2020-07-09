@@ -50,9 +50,15 @@ let periodAmount = document.querySelector('.period-amount');
 // Объект
 
 start.disabled = true;
-salaryAmount.addEventListener('keydown', function() {
-    start.disabled = false;
-});
+function loger() {
+    if (salaryAmount.value === '') {
+        start.disabled = true;
+    } else {
+        start.disabled = false;
+    }
+    
+}
+salaryAmount.addEventListener('keydown', loger);
 
 let appData = {
     start: function() {
